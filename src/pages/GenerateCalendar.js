@@ -14,8 +14,8 @@ const GenerateCalendar = () => {
   const handleGenerate = () => {
     validateDatesPicked();
 
-    const start = startDate.getTime(); // convert to Unix timestamp
-    const end = endDate.getTime(); // convert to Unix timestamp
+    const start = startDate.toISOString(); // convert to Unix timestamp
+    const end = endDate.toISOString(); // convert to Unix timestamp
 
     console.log(start);
     console.log(end);
