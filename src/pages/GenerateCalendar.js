@@ -14,29 +14,32 @@ const GenerateCalendar = () => {
   const handleGenerate = () => {
     validateDatesPicked();
 
+    console.log(startDate);
+    console.log(endDate);
+
     const start = startDate.toISOString(); // convert to Unix timestamp
     const end = endDate.toISOString(); // convert to Unix timestamp
 
     console.log(start);
     console.log(end);
 
-    api
-      .post(
-        "/scan",
-        {},
-        {
-          params: {
-            start: start,
-            end: end,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // api
+    //   .post(
+    //     "/scan",
+    //     {},
+    //     {
+    //       params: {
+    //         start: start,
+    //         end: end,
+    //       },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   return (
@@ -45,12 +48,17 @@ const GenerateCalendar = () => {
         <h1>PlanIt</h1>
       </div>
       <div>
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-        <button onClick={handleGenerate}>Generate Calendar</button>
+        <center>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+          />
+          <button onClick={handleGenerate}>Generate Calendar</button>
+        </center>
       </div>
     </>
   );
