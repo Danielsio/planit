@@ -1,7 +1,7 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import api from "../api/axiosBackendConfig";
 
-const Login = () => {
+const SignUp = () => {
   const sendAuthCode = async (code) => {
     const res = await api.post("/sign-up", {}, { params: { code: code } });
     return res;
@@ -25,10 +25,10 @@ const Login = () => {
   });
 
   return (
-    <div className="loginButton">
-      <button onClick={login}>Google Login</button>
+    <div className="sign-up-button">
+      <button onClick={login}>Google Sign-Up</button>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

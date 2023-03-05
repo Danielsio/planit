@@ -8,45 +8,49 @@ const GenerateCalendar = () => {
   const [endDate, setEndDate] = useState(new Date());
 
   const validateDatesPicked = () => {
-    console.log("validate check");
+    if (startDate >= endDate) {
+      console.error("Error: Start date must be before end date.");
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const handleGenerate = () => {
-    validateDatesPicked();
+    if (validateDatesPicked()) {
+      const start = startDate.toISOString();
+      const end = endDate.toISOString();
 
-    console.log(startDate);
-    console.log(endDate);
-
-    const start = startDate.toISOString(); // convert to Unix timestamp
-    const end = endDate.toISOString(); // convert to Unix timestamp
-
-    console.log(start);
-    console.log(end);
-
-    // api
-    //   .post(
-    //     "/scan",
-    //     {},
-    //     {
-    //       params: {
-    //         start: start,
-    //         end: end,
-    //       },
-    //     }
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+      api
+        .post(
+          "/scan",
+          {},
+          {
+            params: {
+              start: start,
+              end: end,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.status === 201) {
+            console.log(response.data);
+          } else if (response.status === 409) {
+            console.log(response.data);
+          } else {
+            console.error(
+              `Error: Unexpected response status code: ${response.status}`
+            );
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
     <>
-      <div className="headerText">
-        <h1>PlanIt</h1>
-      </div>
       <div>
         <center>
           <DatePicker
