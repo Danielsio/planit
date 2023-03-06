@@ -18,8 +18,18 @@ const GenerateCalendar = () => {
 
   const handleGenerate = () => {
     if (validateDatesPicked()) {
-      const start = startDate.toISOString();
-      const end = endDate.toISOString();
+      const start = new Date(startDate);
+      start.setHours(0, 0, 0, 0);
+
+      const end = new Date(endDate);
+      end.setHours(23, 59, 59, 0);
+
+      console.log(
+        "sending parameters to server - start: " +
+          start.toISOString() +
+          ", end: " +
+          end.toISOString()
+      );
 
       api
         .post(
@@ -27,8 +37,8 @@ const GenerateCalendar = () => {
           {},
           {
             params: {
-              start: start,
-              end: end,
+              start: start.toISOString(),
+              end: end.toISOString(),
             },
           }
         )
