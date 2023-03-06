@@ -115,3 +115,7 @@ p .home-page-welcome-text {
   display: flex;
   flex-direction: column;
 }
+
+.about-text {
+  text-align: center;
+}
