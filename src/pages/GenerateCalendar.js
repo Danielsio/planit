@@ -63,15 +63,19 @@ const GenerateCalendar = () => {
     <>
       <div>
         <center>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          />
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-          />
-          <button onClick={handleGenerate}>Generate Calendar</button>
+          <div className="date-picker">
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+            />
+          </div>
+          <button className="generate-button" onClick={handleGenerate}>
+            Generate Calendar
+          </button>
         </center>
       </div>
     </>
